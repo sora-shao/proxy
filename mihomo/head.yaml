@@ -1,0 +1,34 @@
+vars:
+  interval: &interval 300
+  update: &update 604800
+# 订阅配置
+providers: &providers { type: http, interval: *update, proxy: LOCAL,header: { User-Agent: ['clash-verge/v2.4.3','clash.meta','mihomo'] }, health-check: { enable: true, url: 'https://www.gstatic.com/generate_204', expected-status: 204,  interval: *interval, timeout: 3000, max-failed-times: 2, lazy: false }, exclude-filter: '(?i)套餐|剩余|流量|到期|重置|频道|订阅|官网|禁止|客户端|x|倍|海外|消耗|导航' }
+provider-override-base: &provider_override_base
+  udp: true
+proxy-providers:
+  Sakuraca:
+    <<: *providers
+    url: "url1"
+    path: ./providers/Sakuraca.yaml
+    override:
+      <<: *provider_override_base
+      additional-prefix: "Sakuraca|"
+
+  SaySS:
+    <<: *providers
+    url: "url2"
+    path: ./providers/SaySS.yaml
+    override:
+      <<: *provider_override_base
+      additional-prefix: "SaySS|"
+
+  CockCloud:
+    <<: *providers
+    url: "url3"
+    path: ./providers/CockCloud.yaml
+    override:
+      <<: *provider_override_base
+      additional-prefix: "CockCloud|"
+use: &use { use: [Sakuraca,SaySS,CockCloud]}
+
+select: &select { type: select,use: [Sakuraca,SaySS,CockCloud] }
