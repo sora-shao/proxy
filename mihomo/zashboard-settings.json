@@ -3,7 +3,7 @@
   "config/disable-proxies-page-text-select": "true",
   "config/log-filter-enabled": "false",
   "config/auto-sync-settings": "true",
-  "config/automatic-disconnection": "true",
+  "config/automatic-disconnection": "false",
   "config/truncate-proxy-name": "false",
   "config/show-statistics-when-sidebar-collapsed": "true",
   "config/swipe-in-tabs": "false",
